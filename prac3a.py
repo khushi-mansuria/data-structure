@@ -31,7 +31,7 @@ class Stack:
         element_list = []
         for i in self.array:
             if i is not None:
-                element_list.append(i.label)
+                element_list.append(i)
         return element_list
 
 
@@ -44,6 +44,9 @@ def test_stack():
         st_element = st.pop()
         assert st_element == element
     assert st.pop() is None
-
+    for element in [5, 3, 'hi', 'dina', 8]:
+        st.push(element)
+    print(st.create_copy_of_data())    
 
 test_stack()
+
