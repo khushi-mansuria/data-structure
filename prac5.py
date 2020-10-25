@@ -1,37 +1,36 @@
-def linear_search(lst, element):
-    for i in lst:
-        if i == element:
-            return lst.index(i)
-    return -1
+class Search:
+    def __init__(self, lst, ele):
+        self.lst = lst
+        self.ele = ele
+
+    def binary_search(self):
+        sorted_lst = sorted(self.lst)
+        start = 0
+        end = len(sorted_lst) - 1
+        while start <= end:
+            mid = (end + start) // 2
+            if sorted_lst[mid] < self.ele:
+                start = mid + 1
+            elif sorted_lst[mid] > self.ele:
+                end = mid - 1
+            else:
+                return mid
+        return False
+
+    def linear_search(self):
+        for i in range(len(self.lst)):
+            if self.lst[i] == self.ele:
+                return i
+        return False
 
 
-def binary_search(lst, element, start, end):
-    mid = (start + end) // 2
-    if element == lst[mid]: 
-        return mid
-    if element < lst[mid]:
-        return binary_search(lst, element, start, mid-1)
-    else:
-        return binary_search(lst, element, mid+1, end)
-
-
-lst = [1, 2, 3, 4, 5, 6,7,8,9,10]
-print(lst)
-element = int(input("Enter a number you want to search from the given list:\n"))
-while True:
-    print("Select the method you want to use:")
-    print("1. Linear search")
-    print("2. Binary search")
-    print("3.Exit")
-    option = int(input("Enter the option"))
-
-    if option == 1:
-        print(linear_search(lst, element))
-        
-    elif option == 2:
-        print(binary_search(lst, element, 0, len(lst)))
-    
-    elif option == 3:
-        break
-    else:
-        print("!!! Enter valid option !!!!")
+if __name__ == '__main__':
+    test_list = [35, 10, 43, 82, 66, 51, 97]
+    test_value_1 = 43
+    test_value_2 = 44
+    test_search = Search(test_list, test_value_1)
+    print(test_search.binary_search())
+    print(test_search.linear_search())
+    test_search_2 = Search(test_list, test_value_2)
+    print(test_search_2.binary_search())
+    print(test_search_2.linear_search())
